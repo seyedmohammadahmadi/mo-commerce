@@ -1,0 +1,49 @@
+- React app created with vite
+- Use TailwindCSS for styling (add MUI, AntD, shadcn, or whatever you need)
+- State management : use whatever you want
+- Froms : use react-hook-form alongside a schema validator like yup or zod
+- API : json-server
+- Table : whatever table component (like AG Grid, MUI table, ...)
+- Slider : whatever slider or swiper component (like react-swiper)
+
+---------------------------------------------
+
+Routes :
+/ => main page --- a slider of a few products
+/login => login page (username only)
+/products => products landing page --- list of all products in a responsive grid layout with pagination and sort by price and stockCount filters
+/products/:id => product detail page --- a single page that shows basic information about the product with the clicked dynamic product-id
+/users --- list of all users in a table
+
+* /users route is protected (needs user to login) that only the user with ADMIN role can access. ADMIN can see, update, delete, create users (use json-server for CRUD)
+
+---------------------------------------------
+
+layout : 
+header => logo, navbar links, action
+logo : your_name
+navbar links : products, profile (if user is loggedin navigate to /profile else navigate to login)
+action : if user is loggedin show logout button else show login button + shopping basket icon
+
+---------------------------------------------
+
+user type : {
+    username: string,
+    role: 'ADMIN' | 'CUSTOMER'
+}
+
+product type : {
+    id: number,
+    name: string,
+    image: string,
+    url: string,
+    stockCount: number,
+    maxBuyCount: number,
+    price:number,
+}
+
+---------------------------------------------
+
+database : 
+- fill your database with any number of unique users
+- fill your database with any number of unique products
