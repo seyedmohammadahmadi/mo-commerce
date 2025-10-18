@@ -57,17 +57,17 @@ Clone and install:
 git clone https://github.com/seyedmohammadahmadi/mo-commerce.git
 cd mo-commerce
 npm install
+
 Run the API:
 
-Bash
-
+```bash
 npx json-server --watch data/db.json --port 3000
 Start the app:
 
 Bash
 
 npm run dev
-Login (no password):
+🔑 Login (no password)
 Use any username from data/db.json, for example:
 
 admin → ADMIN
