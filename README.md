@@ -1,16 +1,17 @@
-mo‑commerce — Modern E‑commerce + Admin Panel 🚀
-A modern, responsive e‑commerce app built with React + TypeScript + TailwindCSS + shadcn/ui.
-Focuses on Core Logic: state management, authentication, and role‑based access control (RBAC).
-Live demo (read‑only): https://seyedmohammadahmadi.github.io/mo-commerce/
+mo‑commerce – Modern E‑commerce + Admin Panel 🚀
+A modern, responsive, and role‑based e‑commerce web app built with React + TypeScript + TailwindCSS + shadcn/ui.
+Focuses on core business logic including state management, authentication, and RBAC (Role‑Based Access Control).
+
+🌐 Live Demo (Read‑only): mo‑commerce on GitHub Pages
 
 ⚡ Features
-🔐 Auth & RBAC — Username login, protected /users (ADMIN only)
-🧑‍💼 Admin Panel (Users) — CRUD in development (json‑server), read‑only in demo
-🛒 Dynamic Cart (Zustand) — add / remove / update quantity instantly
-🛍️ Products Grid — responsive layout, search, category filter, sort by price/stock
-📄 Product Detail — price, stock, description, add to cart
-🖱️ Smooth UI — Framer Motion animations + Swiper slider
-📱 Responsive Design — desktop & mobile friendly
+🔐 Auth & RBAC — Username‑based login with protected admin routes
+🧑‍💼 Admin Panel (Users) — CRUD (via json‑server) in development, read‑only in demo
+🛒 Dynamic Cart — Add / remove / update items instantly using Zustand
+🛍️ Products Grid — Search, category filters, and sort by price or stock
+📄 Product Detail — View price, stock, description, and cart controls
+🖱️ Smooth UI/UX — Powered by Framer Motion animations + Swiper slider
+📱 Responsive Design — Perfect on desktop and mobile
 🛠 Tech Stack
 ⚛ React 18 + Vite
 📘 TypeScript
@@ -20,16 +21,18 @@ Live demo (read‑only): https://seyedmohammadahmadi.github.io/mo-commerce/
 🌀 Framer Motion (animations)
 🖼 Swiper (slider)
 🧭 React Router (routing)
-🔌 json‑server (dev API)
+🔌 json‑server (development API)
 🧭 Routes
-/ — Home (featured products slider)
-/login — Login (username only)
-/products — All products (grid + search/filter/sort)
-/products/:id — Product detail
-/users — Users table (Protected: ADMIN only)
-In demo (GitHub Pages), /users is read‑only; in development it’s full CRUD (json‑server).
+Path	Description
+/	Home (Featured products slider)
+/login	Login (username only)
+/products	All products (grid + search/filter/sort)
+/products/:id	Product details
+/users	Users table (Protected – ADMIN only)
+🧱 In the demo environment (GitHub Pages), /users is read‑only.
+In development, full CRUD functionality is available through json‑server.
 
-📦 Installation & Usage (Dev)
+📦 Installation & Usage (Development)
 Clone the repo and install dependencies:
 
 Bash
@@ -37,7 +40,7 @@ Bash
 git clone https://github.com/seyedmohammadahmadi/mo-commerce.git
 cd mo-commerce
 npm install
-Run API with json‑server:
+Run the API with json-server:
 
 Bash
 
@@ -47,22 +50,22 @@ Start the app:
 Bash
 
 npm run dev
-Login (no password): use a username from data/db.json
-Examples: admin (ADMIN), customer, mohammad
+🔑 Login (no password)
+Use any username from data/db.json, for example:
 
-🌐 Demo (Prod)
-App (static): https://seyedmohammadahmadi.github.io/mo-commerce/
-Data (static JSON): https://seyedmohammadahmadi.github.io/mo-commerce/data/db.json
-The demo uses a static JSON file (read‑only). CRUD actions are disabled there.
+admin → Role: ADMIN
+customer or mohammad → Role: CUSTOMER
+🌐 Demo (Production)
+App (Static): GitHub Pages Demo
+Data (Read‑only JSON): data/db.json
+The demo uses a static JSON file only; CRUD operations are disabled there.
 
 🧩 Data Models
 User
-
 TypeScript
 
 { username: string; role: 'ADMIN' | 'CUSTOMER' }
 Product
-
 TypeScript
 
 {
@@ -76,8 +79,7 @@ TypeScript
   category?: string;
   description?: string;
 }
-
-✨ Why this project?
-Demonstrates real‑world core logic (Auth + RBAC + state + forms).
-Clean, responsive UI with production‑ready patterns.
-Clear separation of dev vs prod data sources (json‑server vs static JSON).
+✨ Why mo‑commerce?
+Demonstrates real‑world e‑commerce logic (Auth, RBAC, State, Forms)
+Combines a clean, responsive UI with production‑ready patterns
+Clear separation between Development (json‑server) and Production (static JSON) environments
