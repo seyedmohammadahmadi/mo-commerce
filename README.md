@@ -10,11 +10,6 @@ Focuses on **core logic** — authentication, state management, and **RBAC (Role
 
 ---
 
-## 📸 Preview
-_Add screenshots here (Home, Products, Product Detail, Admin Users view)_
-
----
-
 ## ⚡ Features
 - 🔐 **Auth & RBAC** – Username login and protected admin routes  
 - 👨‍💼 **Admin Panel (Users)** – CRUD via `json-server` in dev, read‑only in demo  
