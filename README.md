@@ -1,26 +1,26 @@
 mo‑commerce – Modern E‑commerce + Admin Panel 🚀
-A modern, responsive e‑commerce app with admin features, built with React + TypeScript + TailwindCSS + shadcn/ui.
-Core focus on state management (Zustand), auth + RBAC, and clean UI/UX.
-Live demo (read‑only): https://seyedmohammadahmadi.github.io/mo-commerce/
+A modern, responsive e‑commerce app built with React + TypeScript + TailwindCSS + shadcn/ui.
+Supports 🔐 Auth + RBAC (ADMIN) and dev/prod data sources (json‑server in dev, static JSON in demo).
+Live demo: https://seyedmohammadahmadi.github.io/mo-commerce/
 
 ⚡ Features
 🔐 Auth & RBAC (username login) — protected /users (ADMIN only)
 🧑‍💼 Admin Panel (Users) — CRUD in development (json‑server), read‑only in demo
-🛒 Dynamic Cart (Zustand) — add/remove/update quantities instantly
-🛍️ Products Grid — responsive layout, search, category filter, sort by stock/price
+🛒 Dynamic Cart (Zustand) — add/remove/update quantity instantly
+🛍️ Products Grid — responsive layout, search, category filter, sort by price/stock
 📄 Product Detail — price, stock, description, add to cart
-🖱️ Smooth UI — Framer Motion animations + Swiper slider on home
+🖱️ Smooth UI — Framer Motion animations + Swiper slider on Home
 📱 Responsive Design (Desktop + Mobile)
 🛠 Tech Stack
 ⚛ React 18 + Vite
 📘 TypeScript
 🎨 TailwindCSS + shadcn/ui
-🗃 Zustand (state)
+🗃 Zustand (state management)
 🧾 React Hook Form + Zod (forms & validation)
 🌀 Framer Motion (animations)
 🖼 Swiper (slider)
-🔌 json‑server (dev API)
 🧭 React Router (routing)
+🔌 json‑server (dev API)
 📦 Installation & Usage
 Clone the repo and install dependencies:
 
@@ -39,6 +39,5 @@ Start the app:
 Bash
 
 npm run dev
-Dev: full CRUD on /users (ADMIN).
-Demo: data served from static JSON; admin panel is read‑only.
-Live demo: https://seyedmohammadahmadi.github.io/mo-commerce/
+Use a username from data/db.json (e.g. admin, customer) to log in.
+In demo, /users is read‑only; in dev it’s full CRUD via json‑server.
