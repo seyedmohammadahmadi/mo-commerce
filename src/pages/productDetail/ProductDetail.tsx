@@ -140,6 +140,161 @@
 //   );
 // }
 
+// import { useParams } from "react-router-dom";
+// import { useEffect, useState } from "react";
+// import { motion } from "framer-motion";
+// import { Button } from "../../components/ui/button";
+// import { ShoppingCart, PackageCheck, AlertCircle } from "lucide-react";
+// import { Skeleton } from "../../components/ui/skeleton";
+// import { Badge } from "@/components/ui/badge";
+// import { useCartStore } from "../../store/CartStore/cartStore";
+
+// interface Product {
+//   id: number;
+//   name: string;
+//   image: string;
+//   url: string;
+//   stockCount: number;
+//   maxBuyCount: number;
+//   price: number;
+//   category?: string;
+//   description?: string;
+// }
+
+// const dbUrl = () =>
+//   new URL("data/db.json", import.meta.env.BASE_URL).toString();
+
+// export default function ProductDetailPage() {
+//   const { id } = useParams();
+//   const [product, setProduct] = useState<Product | null>(null);
+//   const [loading, setLoading] = useState(true);
+//   const { addItem } = useCartStore();
+
+//   useEffect(() => {
+//     if (!id) return;
+//     const isDev = import.meta.env.DEV;
+//     (async () => {
+//       try {
+//         if (isDev) {
+//           const res = await fetch(`http://localhost:3000/products/${id}`);
+//           if (!res.ok) throw new Error("Product not found");
+//           const data = await res.json();
+//           setProduct({
+//             ...data,
+//             id: Number(data.id),
+//             price: Number(data.price),
+//           });
+//         } else {
+//           const res = await fetch(dbUrl());
+//           const data = await res.json();
+//           const list = Array.isArray(data) ? data : data.products ?? [];
+//           const found = list.find((p: any) => String(p.id) === String(id));
+//           setProduct(
+//             found
+//               ? { ...found, id: Number(found.id), price: Number(found.price) }
+//               : null
+//           );
+//         }
+//       } catch {
+//         setProduct(null);
+//       } finally {
+//         setLoading(false);
+//       }
+//     })();
+//   }, [id]);
+
+//   if (loading) {
+//     return (
+//       <div className="min-h-screen flex items-center justify-center">
+//         <Skeleton className="w-[320px] h-[420px] rounded-xl" />
+//       </div>
+//     );
+//   }
+
+//   if (!product) {
+//     return (
+//       <div className="min-h-screen flex items-center justify-center text-red-500 text-lg font-semibold">
+//         <AlertCircle className="w-5 h-5 mr-2" />
+//         Product not found!
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <motion.div
+//       className="min-h-screen p-6 md:p-12 bg-gradient-to-br from-gray-50 to-white"
+//       initial={{ opacity: 0 }}
+//       animate={{ opacity: 1 }}
+//     >
+//       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+//         <motion.img
+//           src={product.image}
+//           alt={product.name}
+//           className="w-full h-96 object-cover rounded-2xl shadow-xl"
+//           initial={{ scale: 0.95 }}
+//           animate={{ scale: 1 }}
+//           transition={{ duration: 0.4 }}
+//         />
+//         <div className="flex flex-col gap-4">
+//           <h1 className="text-4xl font-bold tracking-tight">{product.name}</h1>
+//           {product.category && (
+//             <Badge
+//               variant="secondary"
+//               className="w-fit px-3 py-1 rounded-full text-sm"
+//             >
+//               {product.category.toUpperCase()}
+//             </Badge>
+//           )}
+//           <div className="flex items-center gap-4 mt-3">
+//             <span className="text-2xl font-bold text-green-600">
+//               ${product.price.toLocaleString()}
+//             </span>
+//             <span className="flex items-center gap-1 text-sm text-gray-600">
+//               {product.stockCount > 0 ? (
+//                 <>
+//                   <PackageCheck className="w-4 h-4 text-green-500" />{" "}
+//                   {product.stockCount} in stock
+//                 </>
+//               ) : (
+//                 <>
+//                   <AlertCircle className="w-4 h-4 text-red-500" /> Out of stock
+//                 </>
+//               )}
+//             </span>
+//           </div>
+//           {product.description && (
+//             <p className="text-gray-700 leading-relaxed mt-2">
+//               {product.description}
+//             </p>
+//           )}
+
+//           <motion.div whileHover={{ scale: 1.03 }} className="mt-6">
+//             <Button
+//               disabled={product.stockCount <= 0}
+//               onClick={() =>
+//                 addItem({
+//                   id: product.id,
+//                   title: product.name,
+//                   price: product.price,
+//                   image: product.image,
+//                 })
+//               }
+//             >
+//               {product.stockCount <= 0 ? (
+//                 "Out of Stock"
+//               ) : (
+//                 <>
+//                   <ShoppingCart className="w-5 h-5 mr-2" /> Add to Cart
+//                 </>
+//               )}
+//             </Button>
+//           </motion.div>
+//         </div>
+//       </div>
+//     </motion.div>
+//   );
+// }
+
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -148,6 +303,7 @@ import { ShoppingCart, PackageCheck, AlertCircle } from "lucide-react";
 import { Skeleton } from "../../components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { useCartStore } from "../../store/CartStore/cartStore";
+import { isDev, dataUrl } from "../../utilse/env";
 
 interface Product {
   id: number;
@@ -161,9 +317,6 @@ interface Product {
   description?: string;
 }
 
-const dbUrl = () =>
-  new URL("data/db.json", import.meta.env.BASE_URL).toString();
-
 export default function ProductDetailPage() {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
@@ -172,7 +325,6 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     if (!id) return;
-    const isDev = import.meta.env.DEV;
     (async () => {
       try {
         if (isDev) {
@@ -183,15 +335,23 @@ export default function ProductDetailPage() {
             ...data,
             id: Number(data.id),
             price: Number(data.price),
+            stockCount: Number(data.stockCount),
+            maxBuyCount: Number(data.maxBuyCount),
           });
         } else {
-          const res = await fetch(dbUrl());
-          const data = await res.json();
-          const list = Array.isArray(data) ? data : data.products ?? [];
+          const res = await fetch(dataUrl("db.json") + `?t=${Date.now()}`);
+          const json = await res.json();
+          const list = Array.isArray(json) ? json : json.products ?? [];
           const found = list.find((p: any) => String(p.id) === String(id));
           setProduct(
             found
-              ? { ...found, id: Number(found.id), price: Number(found.price) }
+              ? {
+                  ...found,
+                  id: Number(found.id),
+                  price: Number(found.price),
+                  stockCount: Number(found.stockCount),
+                  maxBuyCount: Number(found.maxBuyCount),
+                }
               : null
           );
         }
@@ -245,6 +405,7 @@ export default function ProductDetailPage() {
               {product.category.toUpperCase()}
             </Badge>
           )}
+
           <div className="flex items-center gap-4 mt-3">
             <span className="text-2xl font-bold text-green-600">
               ${product.price.toLocaleString()}
@@ -262,6 +423,7 @@ export default function ProductDetailPage() {
               )}
             </span>
           </div>
+
           {product.description && (
             <p className="text-gray-700 leading-relaxed mt-2">
               {product.description}
