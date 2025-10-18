@@ -1,4 +1,4 @@
-#mo‑commerce – Modern E‑commerce + Admin Panel 🚀
+mo‑commerce – Modern E‑commerce + Admin Panel 🚀
 A modern, responsive e‑commerce app built with React + TypeScript + TailwindCSS + shadcn/ui.
 Supports 🔐 Auth & RBAC (ADMIN) and 🔗 dev/prod data sources (json‑server in dev, static JSON in demo).
 Live demo: https://seyedmohammadahmadi.github.io/mo-commerce/
